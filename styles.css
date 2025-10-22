@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Young+Serif&display=swap');
+
+:root{
+
+    --bg: hsl(30, 54%, 90%);     /* fondo de la página */
+    --card: hsl(0, 0%, 100%);    /* fondo de la receta */
+    --text: hsl(24, 5%, 18%);    /* texto principal */
+    --muted: hsl(30, 10%, 34%);  /* texto secundario */
+    --heading: hsl(14, 45%, 36%);/* títulos de secciones (marrón) */
+    --accent: hsl(332, 51%, 32%);/* “Preparation time” */
+    --prep: hsl(330, 100%, 98%); /* Preparation */
+    --divider: hsl(30, 18%, 87%);/* líneas separadoras */
+
+    --ff-sans: "Outfit", system-ui, sans-serif;
+    --ff-serif: "Young Serif", Georgia, serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: var(--bg);
+    font-family: var(--ff-sans);
+    color: var(--text);
+    font-size: 1rem; /* 16px base */
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+}
+
+h2{
+    font-family: var(--ff-serif);
+    color: var(--heading);
+    font-weight: 400;
+    margin: 1rem 0;
+}
+
+
+.recipe{
+    background-color: var(--card);
+    max-width: 46rem; /* tope en escritorio */
+    width: 100%; /* Con esto ocupa todo el contenido del padre, hasta el tope de max-width */
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+/* Hasta 430px (moviles) se aplica pantalla completa a la tarjeta de receta */
+@media (max-width: 430px){
+    body{
+        background-color: var(--card);
+        padding: 0;
+    }
+
+    .recipe{
+        border-radius: 0;
+        width: 100%;
+        min-height: 100dvh;
+    }
+}
+
+.recipe-header{
+    margin-bottom: 1.5rem;
+
+    img{
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 0.75rem;
+    }
+
+    h1{
+        font-family: var(--ff-serif);
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 1rem 0;
+    }
+
+    .recipe-intro{
+        color: var(--muted);
+        margin-bottom: 1rem;
+    }
+
+    .prep{
+        background-color: var(--prep);
+        padding: 1.5rem 2rem ;
+        border-radius: 1rem;
+        color: var(--muted);
+
+        .prep-title{
+            font-family: var(--ff-sans);
+            color: var(--accent);
+            margin-bottom: 0.9rem;
+            font-weight: bold;
+        }
+
+        .prep-list{
+        
+            div{
+                display: flex;
+                margin-bottom: 0.5rem;
+                padding-left: 0.5rem;
+
+            }
+
+            dt{
+                position: relative;
+                font-weight: bold;
+                padding-left: 2rem;
+                margin-right: 0.5rem;
+
+                &::before{ /* Antes del dt */
+                    content: "•";
+                    position: absolute;
+                    left: 0;
+                    margin-right: 1.rem;
+                }
+            }            
+        }      
+    }
+}
+
+.ingredients{
+
+    .ingredients-list{
+        list-style: none;
+        margin-bottom: 1.5rem;
+
+        li{
+            position: relative;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            padding-left: 2.1rem;
+
+            &::before{ /* antes del li */
+                content: "•";
+                position: absolute;
+                left: 0;
+                top: 0;
+                font-size: 1.1rem;
+                margin-left: 0.4rem;
+            }
+        }
+    }
+}
+
+.section-divider{
+    border: 1px solid var(--divider);
+    margin: 1.5rem 0;
+}
+
+
+.instructions{
+
+    .instructions-list{
+        
+        color: var(--muted);
+        padding-left: 1.5rem;
+
+        li{
+            line-height: 1.5rem;
+            margin-bottom: 0.5rem;
+
+            &::marker{
+                color: var(--heading);
+                font-weight: 700;
+            }
+            
+            p{
+                margin: 0;
+                text-indent: 1rem;
+            }
+            
+        }
+    }
+}
+
+.nutrition{
+
+    .nutrition-table{
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+
+        .visually-hidden{
+            visibility: hidden;
+        }
+
+        /* Todas las filas <tr> que vienen justo despues de otra fila <tr> */
+        tr + tr{
+            border-top: 1px solid var(--divider);
+        }
+
+        th{
+            text-align: left;
+            font-weight: 400;
+            color: var(--muted);
+            padding: 0.5rem 2rem;
+        }
+
+        td{
+            color: var(--heading);
+            font-weight: 700;
+            padding-left: 1rem;
+        }
+    }
+}
